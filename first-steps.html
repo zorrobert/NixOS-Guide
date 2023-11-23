@@ -2,7 +2,7 @@
 
 <h2 id="theory">A little Theory...</h2>
 
-<h3>Basic syntax of a <code>.nix</code> file.</h3>
+<h3>Basic syntax of a <code>.nix</code> file</h3>
 
 
 <h2 id="installing-nixos">Installing NixOS</h2>
@@ -12,3 +12,25 @@
 <p>TL;DR Ti's just like installing Linux Mint or Ubuntu.</p>
 
 <p>After installing NixOS, you will find a file called <code>configuration.nix</code> under <code>/etc/nixos</code>. This is where we will configure our system.</p>
+
+
+<h2 id="installing-packages">Installing Packages</h2>
+<p>
+    On NixOS, instead of running a command like <code>sudo apt install firefox</code>, you put a list of packages that you want into your <code>configuration.nix</code> and they will be installed for you. You can remove packages by simply deleting them from you list of packages.<br>
+    You can install new packages on your NixOS system either as system Packages or as user packages.</p>
+
+<p>User Package:
+    <code>
+    users.users.[username].packages = with pkgs; [
+        firefox
+    ];
+    </code>
+</p>
+
+<p>System Package:
+    <code>
+    environment.systemPackages = with pkgs; [
+        firefox
+    ];
+    </code>
+</p>
