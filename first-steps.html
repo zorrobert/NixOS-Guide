@@ -1,9 +1,6 @@
 <h1>First steps</h1>
 
-<h2 id="theory">A little Theory...</h2>
-
-<h3>Basic syntax of a <code>.nix</code> file</h3>
-
+<p>To get started with NixOS, you should just install and use the system for a bit before getting into more advanced configurations. To do that, you do not need any knowledge about how NixOS works, so just follow along.</p>
 
 <h2 id="installing-nixos">Installing NixOS</h2>
 
@@ -13,24 +10,46 @@
 
 <p>After installing NixOS, you will find a file called <code>configuration.nix</code> under <code>/etc/nixos</code>. This is where we will configure our system.</p>
 
-
 <h2 id="installing-packages">Installing Packages</h2>
+<p>Installing packages on NixOS is different than on Debian-based systems and you have different options for how you want to install a package.</p>
+<ol>
+    <li>nix-shell
+        If you only need a small cli tool to run a few commands, you can install a package only for your shell session. This means that once you exit that shell, the program is removed again.
+    </li>
+    <li>system package
+
+        <p>System Package:
+            <code>
+            environment.systemPackages = with pkgs; [
+                firefox
+            ];
+            </code>
+        </p>
+    </li>
+    <li>user package:
+        <br>
+
+        <p>User Package:
+            <code>
+            users.users.[username].packages = with pkgs; [
+                firefox
+            ];
+            </code>
+        </p>
+    </li>
+</ol>
+
 <p>
-    On NixOS, instead of running a command like <code>sudo apt install firefox</code>, you put a list of packages that you want into your <code>configuration.nix</code> and they will be installed for you. You can remove packages by simply deleting them from you list of packages.<br>
-    You can install new packages on your NixOS system either as system Packages or as user packages.</p>
+    
+    <br>On NixOS, instead of running a command like <code>sudo apt install firefox</code>, you put a list of packages that you want into your <code>configuration.nix</code> and they will be installed for you. You can remove packages by simply deleting them from you list of packages.<br>
+    You can install new packages on your NixOS system either as <u>system packages</u> or as <u>user packages</u>.</p>
 
-<p>User Package:
-    <code>
-    users.users.[username].packages = with pkgs; [
-        firefox
-    ];
-    </code>
-</p>
 
-<p>System Package:
-    <code>
-    environment.systemPackages = with pkgs; [
-        firefox
-    ];
-    </code>
-</p>
+
+
+
+<h2 id="theory">A little Theory...</h2>
+
+<h3>Basic syntax of a <code>.nix</code> file</h3>
+
+
